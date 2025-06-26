@@ -61,7 +61,7 @@ public class UserController {
         LOGGER.info(idsList.toString());
         var users = usersService.getAllUsersByIdList(idsList);
         if(users.isEmpty()){
-            throw new NotFoundException(idsList.stream().findFirst().orElse(0L));
+            throw new NotFoundException(User.class,idsList.stream().findAny().get());
         }else{
             return ResponseEntity.ok().body(users);
         }
