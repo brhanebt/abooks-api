@@ -14,12 +14,12 @@
                 <div class="col-lg-8 col-md-7 col-sm-6">
                     <div class="banner"></div>
                     <div class="themeLocal">
-                        <span th:if="${#locale.language eq 'en'}">
+                        <!-- <span th:if="${#locale.language eq 'en'}">
                             <a th:href="@{/?lang=de}" th:text="#{locale.de}">DE</a>
                         </span>
                         <span th:unless="${#locale.language eq 'en'}">
                             <a th:href="@{/?lang=en}" th:text="#{locale.en}">EN</a>
-                        </span> |
+                        </span> | -->
                         <span th:if="${#themes.code('name') eq 'green'}">
                             <a th:href="@{/?theme=blue}" th:text="#{theme.Blue}">BLUE</a>
                         </span>

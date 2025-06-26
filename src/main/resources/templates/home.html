@@ -9,7 +9,7 @@
 
             <header th:replace="~{layout :: pageMenu}" ></header>
 
-            <section th:fragment="~{layout :: pageContent}">
+            <section th:replace="~{layout :: pageContent}">
                 <p th:text="#{home.caption}" ></p>
                 <p th:text="${message}" ></p>
             </section>
