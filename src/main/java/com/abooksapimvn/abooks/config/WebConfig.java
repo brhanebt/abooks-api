@@ -24,5 +24,4 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware{
         registry.addViewController("/").setViewName("home");
         registry.addViewController("/auth").setViewName("auth");
     }
-
 }
