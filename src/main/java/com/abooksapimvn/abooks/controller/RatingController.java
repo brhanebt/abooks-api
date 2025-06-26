@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.abooksapimvn.abooks.model.Rating;
 import com.abooksapimvn.abooks.service.RatingService;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -23,5 +27,13 @@ public class RatingController {
     public List<Rating> getAllRatings(){
         return ratingService.getAllRatings();
     }
+
+    // Multiple ratings by rating value
+    // Example:- /api/v1/ratings/ratingId?r=9&r=5
+    @GetMapping("ratings/ratingId")
+    public ResponseEntity<List<Rating>> getRatings(@RequestParam("r") List<String> ratings) {
+        return ResponseEntity.ok().body(ratingService.getRatingByRatings(ratings));
+    }
+    
     
 }

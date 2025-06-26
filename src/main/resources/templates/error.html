@@ -1,0 +1,29 @@
+<!--
+Created by IntelliJ IDEA.
+User: iulianacosmina
+Date: 2022-12-26
+-->
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{layout :: pageTitle('Singers Error Page')}"></head>
+
+    <body>
+        <div class="container">
+            <header th:replace="~{layout :: pageHeader}" ></header>
+
+            <header th:replace="~{layout :: pageMenu}" ></header>
+
+            <section th:fragment="~{layout :: pageContent}">
+                <div class="content">
+                    <h3>Unexpected error!</h3>
+                    <div class="error" th:if="${not #strings.isEmpty(problem)}">
+                            <p th:text="${problem}" ></p>
+                    </div>
+                </div>
+            </section>
+
+            <footer th:replace="~{layout :: pageFooter}" ></footer>
+        </div>
+</body>
+</html>

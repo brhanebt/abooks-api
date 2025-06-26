@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{layout :: pageTitle('Singers Home Page')}"></head>
+
+    <body>
+        <div class="container">
+            <header th:replace="~{layout :: pageHeader}" ></header>
+
+            <header th:replace="~{layout :: pageMenu}" ></header>
+
+            <section th:fragment="~{layout :: pageContent}">
+                <p th:text="#{home.caption}" ></p>
+                <p th:text="${message}" ></p>
+            </section>
+
+            <footer th:replace="~{layout :: pageFooter}" ></footer>
+        </div>
+    </body>
+</html>
