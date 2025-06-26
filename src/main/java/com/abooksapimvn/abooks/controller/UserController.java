@@ -1,14 +1,17 @@
 package com.abooksapimvn.abooks.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.abooksapimvn.abooks.exception.NotFoundException;
 import com.abooksapimvn.abooks.model.User;
 import com.abooksapimvn.abooks.service.UsersService;
 
@@ -34,22 +37,34 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     @GetMapping("users")
-    public List<User> getAllUsers(){
-        return usersService.getAllUsers();
+    public ResponseEntity<List<User>> getAllUsers(){
+        var users= usersService.getAllUsers();
+        if(users.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(users);
+
     }
 
     // Retrieve by one user ID
     @GetMapping("users/{userId}")
-    public User getAUser(@PathVariable Long userId) {
-        return usersService.getUserById(userId);
+    public ResponseEntity<User> getAUser(@PathVariable Long userId) {
+        Optional<User> userFromDb = usersService.getUserById(userId);
+        return userFromDb.map(s->ResponseEntity.ok().body(s))
+        .orElseGet(()->ResponseEntity.notFound().build());
     }
 
     // Multiple values: /users/by-ids?id=1&id=2&id=3
     // Example /api/v1/users/by-ids?id=1&id=2&id=3
     @GetMapping("users/by-ids")
-    public List<User> getUsersByIds(@RequestParam("id") List<Long> idsList) {
+    public ResponseEntity<List<User>> getUsersByIds(@RequestParam("id") List<Long> idsList) {
         LOGGER.info(idsList.toString());
-        return usersService.getAllUsersByIdList(idsList);
+        var users = usersService.getAllUsersByIdList(idsList);
+        if(users.isEmpty()){
+            throw new NotFoundException(idsList.stream().findFirst().orElse(0L));
+        }else{
+            return ResponseEntity.ok().body(users);
+        }
     }
 
     // Multiple values as array: /users/by-locations?location=nyc&location=la

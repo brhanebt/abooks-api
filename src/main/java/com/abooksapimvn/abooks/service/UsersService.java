@@ -1,6 +1,7 @@
 package com.abooksapimvn.abooks.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,8 +19,8 @@ public class UsersService {
     private final UsersRepository usersRepository;
 
     @Transactional(readOnly=true)
-    public User getUserById(Long userId){
-        return usersRepository.findById(userId).get();
+    public Optional<User> getUserById(Long userId){
+        return usersRepository.findById(userId);
     }
 
     @Transactional(readOnly=true)
