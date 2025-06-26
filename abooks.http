@@ -8,7 +8,7 @@ GET http://localhost:8081/api/v1/users Http/1.1
 GET http://localhost:8081/api/v1/users/by-ids?id=1&id=2&id=3 Http/1.1
 
 
-#Get Users by ids
+#returns exception -- needs display fix
 
 GET http://localhost:8081/api/v1/users/by-ids?id=34 Http/1.1
 
