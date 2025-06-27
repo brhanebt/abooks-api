@@ -7,12 +7,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.ToString;
 
 @Entity
 @Data
+@ToString
 @Table(name = "abt_amazonbooks")
 @NamedQuery(name = "getBooksByPublisherAndYear", query = "Select b from Book b where b.YearOfPublication=:year and b.publisher=:publisher")
 @NamedQuery(name = "getBooksByPublishersAndYears", query = "Select b from Book b where b.YearOfPublication in :years and b.publisher in :publishers")
+@NamedQuery(name = "getBooksByAuthor", query = "Select b from Book b where b.bookAuthor=:author")
 public class Book {
     @Id
     private String Isbn;

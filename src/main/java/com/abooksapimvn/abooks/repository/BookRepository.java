@@ -17,5 +17,7 @@ public interface BookRepository extends JpaRepository<Book, String>{
 
     @Query(name = "getBooksByPublishersAndYears")
     List<Book> getBooksByPublishersAndYears(@Param("publishers") List<String> publishers, @Param("years") List<String> years);
+    @Query(name = "getBooksByBookAuthor")
+    List<Book> getBooksByBookAuthor(String author);
 
 }
