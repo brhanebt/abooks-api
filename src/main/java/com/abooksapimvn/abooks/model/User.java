@@ -8,11 +8,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.ToString;
 
 @Entity
 @Table(name = "abt_users")
 @NamedQuery(name = "findAllByLocation",query="select u from User u where u.location in :locations")
 @Data
+@ToString
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
