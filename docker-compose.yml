@@ -1,0 +1,22 @@
+version: '3.8'
+
+#docker run -p 3307:3306 --name mysqldl -e MYSQL_ROOT_PASSWORD=Mysql@123 -e MYSQL_DATABASE=abooks_db -e MYSQL_USER=bbt -e MYSQL_PASSWORD=bbt -d mysql:latest
+
+services:
+  mysqldl:
+    container_name: mysqldl
+    image: mysql
+    environment: 
+      MYSQL_ROOT_PASSWORD: Mysql@123
+      MYSQL_DATABASE: abooks_db
+      MYSQL_USER: bbt
+      MYSQL_PASSWORD: bbt
+    networks:
+      - springboot-mysql-net
+
+networks:
+  springboot-mysql-net:
+
+#docker compose up
+#docker compose up -d
+#docker compose down
